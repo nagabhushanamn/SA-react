@@ -11,268 +11,116 @@
  2. let & const keywords with block-scope
  3. function with default & rest params
  4. New way of OO with class-syntax
+ 
  5. Obj-litral enhancements
  6. de-structuring
  7. spread operator
- 8. symbol data-type
- 9. itertors
- 10. for-of-loop
- 11. arrow-function
+ 8. arrow-function
+
+ 9. symbol data-type
+ 10. itertors
+ 11. for-of-loop
 
 
 */
 
 
-//----------------------------------------------------------------------
-// arrow-function
-//----------------------------------------------------------------------
+//----------------------------------------------------------------
+//  Obj-litral enhancements
+//----------------------------------------------------------------
+/* 
+let name = "Nag";
+let age = 35;
 
+// es5
 
-// way-1: normal-function-expression
+let person1 = {
+    name: name,
+    age: age,
+    address: 'chennai',
+    sayName: function () { }
+};
 
-// let getPrice = function () {
-//     return 100 + 200
-// }
+// es6
+let addressType = "office"; // home | address | vacation
+let person2 = {
+    name,
+    age,
+    [addressType + "-address"]: 'chennai',
+    [1 + 2 + 3]: 'six',
+    sayName() { }
+};
 
-// way-2: arrow-function-expression
+ */
 
-// let getPrice = () => {
-//     return 100 + 200
-// }
+//----------------------------------------------------------------
+//  de-structuring
+//----------------------------------------------------------------
 
-
-// let getPrice = (count) => {
-//     return count * (100 + 200)
+// function display(tnr) {
+//     console.log(`the trainer ${tnr.name}, teaching ${tnr.sub}`);
 // }
 
 // or
 
-// let getPrice = count => {
-//     return count * (100 + 200)
-// }
-
-
-// let getPrice = (count,tax) => {
-//     return count * (100 + 200)+tax
+// function display({ name, age }) {
+//     console.log(`the trainer ${name}, teaching ${sub}`);
 // }
 
 // or
 
-// let getPrice = (count, tax) => count * (100 + 200) + tax
-
-
-// let getPrice = (count, tax) => {
-//     let cost = count * (100 + 200)
-//     let total = cost + tax
-//     return total
+// function display(tnr) {
+//     let { name, sub } = tnr;
+//     console.log(`the trainer ${name}, teaching ${sub}`);
 // }
 
+// let tnr = { name: 'Nag', sub: 'react' };
+// display(tnr)
 
 
-
-/*
-
-    Higher-order function
-
-    ==>  a function which takes function as parameters or which return function
-
-    // when / where to use arrow-function ?
-
-    -> for compact function-arg
-    -> to capture 'this'
-
-*/
+// e.g
 
 
-
-// use-1: for compact function-arg
-
-// let nums = [1, 3, 5, 7, 9, 2, 4, 6, 8, 10];
-// nums.sort();
-// nums.sort(function(a,b){return a-b});
-// or
-// nums.sort((a,b)=>{return a-b});
-// or
-// nums.sort((x, y) => x - y);  // sort ==> compare & swap
-
-
-// -> use-2 : to capture 'this'
-
-/*
-
- by default, 
-
-    ==> we can bind all regular-function  to any object statically/dynamically
-    ==> arrow-function always bound to creator
-
-*/
-
-
-// let tnr = {
+// let person = {
 //     name: 'Nag',
-//     doTeach: function () {
-//         console.log(this.name + " teaching .js");
-//         // let askQues = function (q) {
-//         //     console.log(this.name + " answering " + q);
-//         // }
-
-//         // or
-
-//         let askQues = (q) => {
-//             console.log(this.name + " answering " + q);
-//         }
-
-//         console.log('teaching ends..');
-//         return askQues;
-//     }
-// }
-// let askQues = tnr.doTeach();
-// // askQues("Q1") // error
-// // askQues.call(tnr, 'Q1');
-// askQues("Q1")
-
-// let enemyTnr = {
-//     name: 'My Enemy'
-// }
-// // askQues.call(enemyTnr, 'Q2')
-// askQues("Q2")
-
-
-
-
-// Quiz
-
-// Note :  global-scope always executed by global-object/window
-
-// let regularFunc = function () {
-//     console.log(this);
-// }
-// let arrowFunction = () => {
-//     console.log(this);
-// }
-// regularFunc();
-// arrowFunction();
-
-// let o1 = {
-//     name: 'O1',
-//     reg: regularFunc,
-//     arr: arrowFunction
-// }
-// o1.reg();
-// o1.arr();
-
-
-// Q
-
-
-// let invoice = {
-//     num: 123,
-//     process: function () {
-//         console.log('INV-' + this.num + " procesed..");
-//     }
+//     age: 35
 // };
 
+// manual de-structuring
+// let myName = person.name;
+// let myAge = person.age;
 
-// let invoice = {
-//     num: 123,
-//     process: () => {
-//         console.log('INV-' + this.num + " procesed..");
-//     }
-// };
+// or
 
-// let invoice = {
-//     num: 123,
-//     process: function () {
-//         console.log('INV-' + this.num + " procesed partially");
-//         return function () {
-//             console.log('INV-' + this.num + " procesed completly");
-//         }
-//     }
-// };
+// let { name: myName, age: myAge } = person;
+// let { name: name, age: age } = person;
+//or
+// let { name, age } = person;
+
+// let name, age;
+// ({ name, age } = person);
 
 
-// let invoice = {
-//     num: 123,
-//     process: function () {
-//         console.log('INV-' + this.num + " procesed partially");
-//         return () => {
-//             console.log('INV-' + this.num + " procesed completly");
-//         }
-//     }
-// };
+// array de-structuring
 
 
-// let complete = invoice.process();
-// complete();
+// let nums = [10, 20, 30, 40, 50, 60, [70, 80]];
 
+// let n1=nums[0];
+// let n2=nums[1];
+// let n3=nums[2];
 
-//----------------------------------------------------------------------
-// symbols & iterators & for-of-loop
-//----------------------------------------------------------------------
+// or
 
-/*
-
-    symbol: unique & immutable , used as object's identifier property
-
-*/
-
-// Ex.1
-
-// let javaSymbol = Symbol.for('java');
-// let rubySymbol = Symbol.for('ruby');
-
-
-// let e1 = { name: 'Joshua', [rubySymbol]: 'Ruby,Rails' }
-// let e2 = { name: 'Nag', [javaSymbol]: 'all in java' }
-
-// if(e1[rubySymbol]){
-//     console.log('he is ruby employee');
-// }
-
-
-// Ex.2
-
-
-// let breakFastMenu = ['Idly', 'vada', 'poori', 'samosa'];
-
-
-// // if object is an iterable-object, it must have Symbol.iterator property
-
-
-// // if object is an iterable-object, 
-
-// let [m1, m2, m3] = breakFastMenu; // de-structuring
-// let newMenu = [...breakFastMenu, "biryani"]; // spread
-// for (let menu of newMenu) {  // for-of0loop
-//     console.log(menu)
-// }
+// let [n1, n2, n3, n4 = 400, , n6, [n7, n8]] = nums;
 
 
 
-// let idGenerator = {
-//     [Symbol.iterator]: function () {
-//         let id = 0;
-//         return {
-//             next: function () {
-//                 id++
-//                 return { value: id <= 10 ? id : undefined, done: id <= 10 ? false : true }
-//             }
-//         };
-//     }
-// };
-
-// for (let id of idGenerator) {
-//     console.log(id);
-// }
-// let ids = [...idGenerator]
-// let [id1, id2, id3] = idGenerator;
-
-
-
-//----------------------------------------------------------------------
+//----------------------------------------------------------------
 // spread operator
-//----------------------------------------------------------------------
+//----------------------------------------------------------------
 
+// e.g 1
 
 // function func(a, b, c) {
 //     console.log(a);
@@ -280,167 +128,265 @@
 //     console.log(c);
 // }
 
-// let nums = [1, 2, 3];
-// // func(nums);
-// // func(nums[0], nums[1], nums[2]);
-// // or
-// func(...nums)
+// let nums = [10, 20, 30];
 
+// func(nums[0], nums[1], nums[2]); // spread
+// or
+// func(...nums);
 
-// // e.g
-
+// e.g 2
 
 // let arr1 = [1, 2, 3];
 // let arr2 = [7, 8, 9];
-// let arr3 = [...arr1, 4, 5, 6, ...arr2];
+
+// let newArr = [...arr1, 4, 5, 6, ...arr2];
 
 
-//----------------------------------------------------------------------
-// de-structuring
-//----------------------------------------------------------------------
+// e.g 3
 
 
-// 1. object destructuring
+// let o1 = { x: 1, y: 2 }
+// let o2 = { z: 3, y: 20 }
 
-// let person = { name: 'Nag', age: 35 }
-
-// manual
-// let myName = person.name;
-// let myAge = person.age;
-
-// // automtic
-// let { name: myName, age: myAge } = person;
-
-// let { name: name, age: age } = person;
+// // let newO = Object.assign({}, o1, o2)
 // // or
-// let { name, age, address = "Nil" } = person;
+// let newO = { ...o2, ...o1 };
 
 
-// 2. array destructuring
 
-// let nums = [10, 20, 30, 40, 50, 60, [70, 80]]
 
-// manual
 
-// let n1 = nums[0];
-// let n2 = nums[1];
-// let n3 = nums[2];
+//----------------------------------------------------------------
+// Arrow Function / Lambdas
+//----------------------------------------------------------------
+
+
+// let getPrice=function(){
+//     return 100+200;
+// }
+
 
 // or
 
-// let [n1, n2, n3] = nums
-// let [n1, n2, n3, n4 = 400, , n6, [n7, n8]] = nums
+
+// let getPrice = () => {
+//     return 100 + 200;
+// }
+
+
+// let getPrice = (count) => {
+//     return count * (100 + 200);
+// }
+// or
+// let getPrice = count => {
+//     return count * (100 + 200);
+// }
+
+
+// let getPrice = (count, tax) => {
+//     return count * (100 + 200) + tax;
+// }
+// or
+// let getPrice = (count, tax) => count * (100 + 200) + tax;
+
+
+// let getPrice = (count, tax) => {
+//     let cost = count * (100 + 200);
+//     let total = cost + tax;
+//     return total
+// }
+
+
+// where / whey we need arrow-functions?
+
+
+// use:1 : to make compact function-argument
+
+// let nums = [1, 3, 5, 7, 9, 2, 4, 6, 8, 10];
+// nums.sort(function (x, y) { return x - y });
+// or
+// nums.sort((x, y) => { return x - y });
+// or
+// nums.sort((x, y) => x - y);
+
+
+// use:2 : to capture 'this'
+/* 
+let tnr = {
+    name: 'Nag',
+    doTeach: function () {
+        console.log(this.name + ' teaching .js');
+        // let askQues = function (q) {
+        //     console.log(this.name + " asnwering " + q)
+        // }
+        // or
+        let askQues = (q) => {
+            console.log(this.name + " asnwering " + q)
+        }
+        console.log('teaching ends');
+        return askQues;
+    }
+};
+
+let askQues = tnr.doTeach();
+// askQues.call(tnr, "Q1")
+// or
+askQues("Q1")
+
+let enemyTnr = {
+    name: 'subbu'
+}
+
+// askQues.call(enemyTnr, "Q2");
+askQues("Q2") */
 
 
 
-//----------------------------------------------------------------------
-// Obj-literal enhancements
-//----------------------------------------------------------------------
+
+/* 
+let regFunc = function () {
+    console.log(this);
+}
+let arrFunc = () => {
+    console.log(this);
+}
+
+// regFunc();
+// arrFunc();
+
+let o1 = {
+    name: 'One',
+    regFunc: regFunc,
+    arrFunc: arrFunc
+}
+o1.regFunc();
+o1.arrFunc(); */
+
+// let o2 = { name: 'Two' }
+// regFunc.call(o2);
+// arrFunc.call(o2)
 
 
-// let name = "Nag";
-// let age = 35;
-
-
-// // es5
-
-// let person1 = {
-//     name: name,
-//     age: age,
-//     address: 'chennai-india',  //static property name
-//     sayName:function(){
-//         //..
-//     }
-// };
-
-// // es6
-
-// let addressType = "home"; // home | office | vacation | 
-// let person2 = {
-//     name,
-//     age,
-//     [addressType + '-address']: 'chennai-india', //dynamic property names
-//     [1+2+3]:"six",
-//     sayName(){
-//         //...
+// let invoice = {
+//     num: 123,
+//     process: function () {
+//         console.log("INV-" + this.num + " processed");
 //     }
 // }
 
 
-
-
-
-
-
-
-//----------------------------------------------------------------------
-// class-syntax
-//----------------------------------------------------------------------
-
-
-//---------------------------------------------------
-
-// class Person {
-//     constructor(name, age) {
-//         this.name = name;
-//         this.age = age;
-//         this.address = ""
-//         console.log('Person::constructor');
-//     }
-//     sayName() {
-//         console.log('im ' + this.name);
-//     }
-//     sayAge() {
-//         console.log('im ' + this.age + " old");
+// let invoice = {
+//     num: 123,
+//     process: () => {
+//         console.log("INV-" + this.num + " processed");
 //     }
 // }
 
-// let p1 = new Person('Nag', 35)
 
-//---------------------------------------------------
-
-// class Employee extends Person {
-//     constructor(name, age, salary) {
-//         super(name, age);
-//         this.salary = salary;
-//         console.log('Employee::constructor()');
-//     }
-//     saySalary() {
-//         console.log('i get ' + this.salary + " only");
-//     }
-//     askForSalaryRaise() {
-//         return this.salary * 0.02;
+// let invoice = {
+//     num: 123,
+//     process: function () {
+//         console.log("INV-" + this.num + " processed partially");
+//         return function () {
+//             console.log("INV-" + this.num + " processed partcompletlyially");
+//         }
 //     }
 // }
 
-// let e1 = new Employee('Nag', 35, 1000)
 
-//---------------------------------------------------
-
-
-// class Boss extends Employee {
-//     // always default constructor exist, implicilty which invoke super constructor
-
-//     askForSalaryRaise() {
-//         return this.salary * 0.2 + super.askForSalaryRaise();
-//     }
-
-// }
-
-// let boss1 = new Boss('Nag', 35, 1000)
-
-//---------------------------------------------------
-
-
-// class Abc {
-//     static staMethod() {
-//         console.log('static method..');
+// let invoice = {
+//     num: 123,
+//     process: function () {
+//         console.log("INV-" + this.num + " processed partially");
+//         return () => {
+//             console.log("INV-" + this.num + " processed partcompletlyially");
+//         }
 //     }
 // }
-// Abc.staVar1 = 1;
-// Abc.staVar2 = 2;
 
+// let complete = invoice.process();
+// complete();
+
+
+//Quiz
+
+/* 
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+    // let incAge = function () {
+    //     this.age++;
+    //     console.log(`${this.name} grown up to ${this.age}`);
+    // }
+    //or
+    let incAge = () => {
+        this.age++;
+        console.log(`${this.name} grown up to ${this.age}`);
+    }
+    setInterval(incAge, 1000);// interval-event  emitted by window
+}
+
+new Person('Ria', 3); */
+
+
+//-----------------------------------------------------------
+// 9. symbol data-type
+// 10. itertors
+// 11. for-of-loop
+//-----------------------------------------------------------
+
+
+
+/*
+    symbol ==> unique & immutable value, used as obj's identifier
+*/
+
+// let ibmSymbol = Symbol('key');
+// let e = { name: 'Nag', [ibmSymbol]: '12345678' }
+
+
+// let menu = [
+//     "idly", "vada", "poori"
+// ];
+
+// for(let m of menu){
+//     console.log(m);  
+// }
+// let newMenu = [...menu, "biryani"]
+// let [m1, m2] = newMenu
+
+
+/* 
+let idBox = {
+    [Symbol.iterator]: function () {
+        let id = 0;
+        return {
+            next: function () {
+                id++
+                return { value: id <= 10 ? id : undefined, done: id <= 10 ? false : true }
+            }
+        }
+    }
+};
+
+for (let id of idBox) {
+    console.log(id);
+}
+
+let ids = [...idBox];
+
+let [id1, id2] = idBox */
 
 //---------------------------------------------------
+// generator function
+//---------------------------------------------------
 
+function* gen() {
+    let id = 0;
+    while (true) {
+        id++;
+        yield id;
+    }
+}
 
+let it = gen();

@@ -14,27 +14,30 @@
 //-----------------------------------------------------------------
 // a. undefined
 
-var v;
+// var v;
 
 //-----------------------------------------------------------------
 
 //-----------------------------------------------------------------
 
 // b. string
-var name = "Nag";
+
+/* var name = "Nag";
 var selection = 'abc';
 var dynamicString = "the value is " + (12 + 13);
+//or
 var dynamicString2 = `the value is ${12 + 13}` // es6 ==> string interpolation
+
 var multiLineString = `
-    line-1
-    line-2
-`;
+    line-1  : ${name}
+    line-2  : ${1+2}
+`; */
 
 //-----------------------------------------------------------------
 // c. number
 
-var count = 12;
-var cost = 12.12;
+/* var count = 12;
+var cost = 12.12; */
 
 //-----------------------------------------------------------------
 
@@ -42,7 +45,7 @@ var cost = 12.12;
 
 // d. boolean
 
-var found = true;
+// var found = true;
 
 // imp-note :
 
@@ -52,6 +55,8 @@ var found = true;
     
     ref : https://dorey.github.io/JavaScript-Equality-Table/
 */
+
+
 
 
 //-----------------------------------------------------------------
@@ -68,7 +73,7 @@ till ES5,
     function ==> class/constructor
 
 in es6,
-            ==> class syntax
+              ==> class syntax
 
 */
 
@@ -83,8 +88,8 @@ in es6,
 
 */
 
-// Es5
-function Person(name, age) {
+// // Es5
+/* function Person(name, age) {
     this.name = name;
     this.age = age;
 }
@@ -92,11 +97,11 @@ function Person(name, age) {
 var p1 = new Person('Nag', 35)
 var p2 = new Person('Ria', 3)
 p1.address = "chennai"
-delete p1.address
+delete p1.address */
 
 
-//es6
-class NewPerson {
+// //es6
+/* class NewPerson {
     constructor(name, age) {
         this.name = name;
         this.age = age;
@@ -104,7 +109,7 @@ class NewPerson {
 }
 var p3 = new NewPerson('Nag', 35)
 var p4 = new NewPerson('Ria', 3)
-
+ */
 
 //------------------------------------------------
 
@@ -114,82 +119,82 @@ var p4 = new NewPerson('Ria', 3)
 //-----------------------------------------------------------------
 
 // a. Object
-
+/* 
 var config = new Object();
 config.url = "http://"
 config.httpMethod = "GET"
 config.onSuccess = function () {
     console.log('im running on success..');
-}
+} */
 
 // or literal style
-
-
+/* 
 var newConfig = {
     url: "http://",
     httpMethod: 'POST',
     onSuccess: function () {
         //..
     }
-}
+} */
 
 //-----------------------------------------------------------------
 
 // b. Array / List
 
-var arr = new Array()
+// var arr = new Array()
 
 // or literal style
 
-var newArr = [];
+// var newArr = [];
 
 //-----------------------------------------------------------------
 
 
 // c. RegExp
 
-var re = new RegExp("\\d{10}")
+// var re = new RegExp("\\d{10}")
 
 // or  literal style
 
-var newre = /\d{10}/;
+// var newRe = /\d{10}/;
+// var adharPattern=/\d{4}-\d{4}-\d{4}/;
 
 //-----------------------------------------------------------------
 
 
 // d. Function
 
-var add = new Function("n1", "n2", "var result=n1+n2;return result;")
+// var add = new Function("n1", "n2", "var result=n1+n2;return result;")
 
-// or litral-style
+// // or litral-style
 
-function add(n1, n2) {
-    var result = n1 + n2; return result;
-}
+// function add(n1, n2) {
+//     var result = n1 + n2; return result;
+// }
 
 //-----------------------------------------------------------------
 
 
 
-// How to access obj's properties ?
+// // How to access obj's properties ?
 
 var person = {
-    'name': 'Nag',
+    name: 'Nag',
     'home-address': 'chennai',
     1: "one",
     100: "hundred"
 };
 
-//way-1
+// //way-1
 person.name = "Nag N"
 console.log(person.name);
 
-//way-2
+// //way-2
 person["home-address"] = "chennai-india";
 console.log(person["home-address"]);
 
 console.log(person["1"]);
-// or
+// // or
 console.log(person[1]);
 
 

@@ -1,11 +1,17 @@
 "use strict"
+/* 
+function func() {
+    console.log(this)
+}
+func();
+ */
 
 /*
 
 function binding
 -------------------
 
-=> function + object
+=> function on object
 
 2 types
 
@@ -18,104 +24,102 @@ function binding
 //---------------------------------------------------------------------------------
 // a. static function binding
 //---------------------------------------------------------------------------------
+/* 
+function sayNameForAll() {
+    console.log('im ' + this.name);
+}
 
-// function sayNameForAll() {
-//     console.log('im ' + this.name);
-// }
+sayNameForAll(); // Error
 
-// // sayNameForAll(); // error
+let p1 = {
+    name: 'Nag',
+    sayName: sayNameForAll,  // static function-binding
+    doWork: function () {
+        console.log(this.name + "working..");
+    }
+}
+p1.sayName();
+
+let p2 = {
+    name: 'Ria',
+    sayName: sayNameForAll
+};
+p2.sayName();
+
+ */
 
 
-// let p1 = {
-//     name: 'Nag',
-//     sayName: sayNameForAll // static function-binding
-// }
-// p1.sayName();
-
-// let p2 = {
-//     name: 'Ria',
-//     sayName: sayNameForAll
-// };
-// p1.sayName();
-
-// let employee = {
-//     name: 'CTS',
-//     doWork: function () {
-//         console.log(this.name + " working");
-//     }
-// }
+/* let employee = {
+    name: 'IBM',
+    doWork: function () {
+        console.log(this.name + "emp working");
+    }
+}
+employee.doWork() */;
 
 //---------------------------------------------------------------------------------
 // b. dynamic function binding
 //---------------------------------------------------------------------------------
 
-// 
-// function ctsReactTraining(when, duration) {
-//     console.log(`the trainer ${this.name}, giving react training in cts : ${when},${duration} days`);
-// }
 
-// function ctsScalaTraining(when, duration) {
-//     console.log(`the trainer ${this.name}, giving scala training in cts : ${when},${duration} days`);
-// }
+function ibmJavaTraining(sub, duration) {
+    console.log(`the trainer:${this.name}, teaching ${sub} - ${duration} `);
+}
 
-// let tnr = {
-//     name: 'Nag'
-// };
-// let tnr2 = {
-//     name: 'New Trainer'
-// };
+function ibmJSTraining(sub, duration, location) {
+    console.log(`the trainer:${this.name}, teaching ${sub} - ${duration} : ${location}`);
+}
 
-// // week-1
-// tnr.ctsTraining = ctsReactTraining  // static function-binding
-// tnr.ctsTraining();
-
-// //week-2
-// tnr.xxxTraining = xxxReactTraining // static function-binding
-// tnr.xxxTraining();
+let tnr1 = { name: 'Nag' }
+let tnr2 = { name: 'santhunu' }
 
 
-// dynamic function binding
+// tnr1.ibmJavaTraining = ibmJavaTraining;
+// tnr1.ibmJavaTraining("spring boot", 3);
 
+// tnr1.ibmJSTraining = ibmJSTraining;
+// tnr1.ibmJSTraining("react", 3);
+
+
+// dynamci function-binding 
+/* 
 //way-1: call()
-// ctsReactTraining.call(tnr, "oct", 10)
-// ctsScalaTraining.call(tnr, "nov", 5)
+ibmJavaTraining.call(tnr1, "spring", 3);
+ibmJavaTraining.call(tnr2, "spring-boot", 3);
 
 //way-2: apply()
-// ctsReactTraining.apply(tnr, ["oct", 10])
-// ctsScalaTraining.apply(tnr, ["nov", 5])
+ibmJavaTraining.apply(tnr1, ["spring", 3]);
+ibmJavaTraining.apply(tnr2, ["spring-boot", 3]);
 
 //way-3: bind()
-// let reactTngByNag = ctsReactTraining.bind(tnr, "oct", 10)
-// reactTngByNag();
-// reactTngByNag()
-
-// let scalaTngNag = ctsScalaTraining.bind(tnr);
-// scalaTngNag('oct', 5);
-// scalaTngNag('nov', 10);
-
+let newF = ibmJSTraining.bind(tnr1, "react", 3);
+newF("BLR");// 
+newF("PUNE");
+newF("KOL")
+ */
 //---------------------------------------------------------------------------------
 
 // summary
+/* 
+function func() {
+    console.log(this);
+}
+func();
 
-// function func() {
-//     console.log(this);
-// }
-// func();
-
-// // static function binding
-// let o1 = {
-//     name: 'O1',
-//     f: func
-// }
+// static function binding
+let o1 = {
+    name: 'O1',
+    f: func
+}
 
 // // dynamic function binding
-// let o2 = { name: 'O2' }
-// func.call(o2)
-// func.apply(o2)
-// func.bind(o2)();
+let o2 = { name: 'O2' }
+func.call(o2)
+func.apply(o2)
+func.bind(o2)(); */
 
 
-//---------------------------------------------------------------------------------
+// //---------------------------------------------------------------------------------
 
 // let o = { name: "Joshua" }
 
@@ -143,22 +147,22 @@ function binding
 // Quiz
 
 // let pName="global";
+/* 
+let person = {
+    pName: 'Nag', // obj's property
+    sayName: function () {
+        let pName = "local"; // scope's data
+        console.log('im ' + pName); // scope hierarchy data
+        console.log('im ' + person.pName); // refering obj's data
+        console.log('im ' + this.pName); // scope-owner's data
+    }
+};
 
-// let person = {
-//     pName: 'Nag', // obj's property
-//     sayName: function () {
-//         let pName = "local"; // scope's data
-//         console.log('im ' + pName); // scope hierarchy data
-//         console.log('im ' + person.pName); // refering obj's data
-//         console.log('im ' + this.pName); // scope-owner's data
-//     }
-// };
-
-// // person.sayName();
-// let oldPerson = person
-// person = { pName: 'Ria' }
-// oldPerson.sayName();
-
+person.sayName();
+let oldPerson = person
+person = { pName: 'Ria' }
+oldPerson.sayName();
+ */
 
 //---------------------------------------------------------------------------------
 
@@ -171,33 +175,33 @@ function binding
 //---------------------------------------------------------------------------------
 
 // Q
+/* 
 
-// princple :  code must closed for modification, open for extension
-// let tnr = {
-//     name: 'Nag',
-//     doTeach: function () {
-//         console.log(this.name + " teaching .js");
-//         let notes = ".js-notes";
-//         let self = this;
-//         let doLearn = function () {
-//             console.log(this.name + ' learning with ' + notes + " from " + self.name);
-//         }
-//         console.log('teaching ends');
-//         return doLearn
-//     }
-// }
+let tnr = {
+    name: 'Nag',
+    doTeach: function () {
+        console.log(this.name + " teaching .js");
+        let notes = ".js-notes";
+        let self=this;
+        let doLearn = function () {
+            console.log(this.name + ' learning with ' + notes +" from "+self.name);
+        }
+        console.log('teaching ends');
+        return doLearn;
+    }
+}
 
+// waeek-1
+let doLearn = tnr.doTeach();
+// doLearn();
+let emp = { name: "ibm" };
+doLearn.call(emp)
 
-// let learnFunc = tnr.doTeach();
-// let emp = { name: "cts" };
-
-// // learnFunc(); // error
-// learnFunc.apply(emp)
-
-// let tempTnr = { name: 'Ria' }
-// learnFunc = tnr.doTeach.call(tempTnr)
-// learnFunc.apply(emp);
-
+//week-2
+let tempTnr = { name: 'Ria' }
+let learnFunc = tnr.doTeach.call(tempTnr)
+learnFunc.apply(emp);
+ */
 
 
 //---------------------------------------------------------------------------------
@@ -211,3 +215,35 @@ function binding
 // }
 // func();
 
+
+
+//---------------------------------------------------------------------------------
+
+
+
+// 
+
+function sessionStart() {
+    let ibmTraining = function () {
+        console.log(this.name + " teaching..");
+        let self = this;
+        let doLearn = function () {
+            console.log(this.name + " learning .js from " + self.name);
+        }
+        console.log('teaching ends.');
+        return doLearn;
+    }
+    function Trainer(name) {
+        this.name = name;
+    }
+    function Employee(name) {
+        this.name = name;
+    }
+    let tnr = new Trainer("Nag");
+    let e1 = new Employee("E1");
+    let e2 = new Employee("E2");
+    let doLearn = ibmTraining.call(tnr)
+    doLearn.call(e1);
+    doLearn.call(e2);
+}
+sessionStart();

@@ -22,7 +22,8 @@
     ------------------------------------------------------------------
     imp-note :
     ==>every javascript has one global-scope default 
-    ==> every function invocation alos create new-scope,
+    
+    ==> every function invocation also create new-scope,
         which is child of in-which scope that function has declared/created
     ------------------------------------------------------------------
 
@@ -33,14 +34,13 @@
 // console.log(v);
 // ------------------------------------------------------------------
 
-// var v = 12;
-// function f1() {
-//     console.log(v)
-//     var v=13;
-//     console.log(v);
-// }
-// f1(); // f1-scope  <--  global-scope
-
+/* var v = 12;
+function f1() {
+    console.log(v);  
+    var v = 13;
+}
+f1(); // f1-scope <-- global-scope
+ */
 // ------------------------------------------------------------------
 
 // Quiz
@@ -110,7 +110,7 @@
 // v = 13;  // mutatable reference
 
 // const v2 = 13;
-// // v2 = 14; // TypeError ==> immutable reference
+// v2 = 14; // TypeError ==> immutable reference
 
 // ------------------------------------------------------------------
 

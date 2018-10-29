@@ -88,8 +88,6 @@ on project directory
 
 JS-topics
 ------------
-
-
 -------------------------------------------------
  level-1:
    1. data-types
@@ -107,9 +105,7 @@ level-3:
     3. RxJS
 -------------------------------------------------
 level-4:
-    1. transpilers  e.g babel
-    2. module bundlers & loaders e.g webpack
-    3. NPM or Yarn
+    1. Tools
 -------------------------------------------------    
       
 

@@ -1,4 +1,5 @@
 
+"use strict";
 
 /*
 
@@ -19,39 +20,124 @@
             ==> Anonumous function
             ==> function-object created at scope-execution-phase
             ==> will not get hoist with function-obj
-            ==> we can invoke expression
+            ==> we can invoke after expression
 
 */
 
 //-----------------------------------------------------
 // 1  function declaration
 //-----------------------------------------------------
+/* 
+console.log(add(12, 13)) // 25
 
-// console.log(add(12, 13))
+function add(n1, n2) {
+    return n1 + n2;
+}
 
-// function add(n1, n2) {
-//     return n1 + n2;
+console.log(add(12,13))  // 25 */
+
+//-----------------------------------------------------
+
+//-----------------------------------------------------
+// 2. function-expression / Anonumous function
+//-----------------------------------------------------
+/* 
+console.log(add(12,13))   // error
+
+var add = function (n1, n2) {
+        return n1 + n2;
+}
+
+console.log(add(12, 13)) */
+
+//-----------------------------------------------------------
+
+//-----------------------------------------------------------
+// function + parameters
+//-----------------------------------------------------------
+
+/* function func(a, b, c) {
+        console.log(a);
+        console.log(b);
+        console.log(c);
+        console.log(arguments[3]);
+}
+ 
+func()
+func(10)
+func(10,20)
+func(10,20,30)
+func(10, 20, 30, 40);
+ */
+
+// e.g
+
+/* function sum() {
+    let result = 0,
+        len = arguments.length,
+        i = 0;
+    while (i < len) {
+        result += arguments[i]
+        i++
+    }
+    return result
+}
+ */
+
+//-----------------------------------------------------------
+
+// can we overload function .js-language ? No
+
+// function getFood() {
+//     return "No Food"
 // }
-
-// console.log(add(12,13))
-
-//-----------------------------------------------------
-
-//-----------------------------------------------------
-// 2. function-expression
-//-----------------------------------------------------
-
-// console.log(add(12,13)) // error
-// var add = function (n1, n2) {
-//     return n1 + n2;
-// }
-// console.log(add(12,13))
+/* 
+function getFood(pay) {
+        if (arguments.length === 0) return "No Food";
+        return "Biryani"
+}
+console.log(getFood());
+console.log(getFood(100));
+ */
 
 
-//------------------------------------------------------
+//-----------------------------------------------------------
+// function with default parameters  ( es6 )
+//-----------------------------------------------------------
+
+/* 
+function func(a = 1, b = 2) {
+        // if (!a) a = 1
+        // if (!b) b = 2
+        //or 
+        // a = a || 1;
+        // b = b || 2
+        console.log(a);
+        console.log(b);
+}
+func(undefined, 20);
+
+ */
 
 
+//-----------------------------------------------------------
+// function wuth rest parameters  ( es6 )
+//-----------------------------------------------------------
 
+/* function func(a, b, ...remaining) {
+        console.log(a);
+        console.log(b);
+        console.log(Array.isArray(remaining));
+        console.log(remaining)
+}
+func(10, 20, 30, 40, 50);
+
+
+ */
+
+//-----------------------------------------------------------
+// FP - principles
+//-----------------------------------------------------------
 /*
 
 // .js-language , functions are first-class values/citizens
@@ -65,115 +151,53 @@
 //------------------------------------------------------
 // #1 - A function can be stored in a variable or value
 //------------------------------------------------------
+/* 
+function greet() {
+    console.log('Hello..');
+}
 
-// function greet() {
-//     console.log('Hello..');
-// }
-
-// var sayHello = greet;
-// sayHello();
+var sayHello = greet;
+sayHello(); */
 
 //------------------------------------------------------
 // #2 - - A parameter of a function can be a function
 //------------------------------------------------------
+/* 
+function greet(f) {
+    console.log("----------------------------");
+    f();
+    console.log("----------------------------")
+}
 
-// function greet(f) {
-//     console.log("----------------------------");
-//     f();
-//     console.log("----------------------------")
-// }
+var en = function () { console.log("Hello") }
+greet(en);
+greet(function () { console.log('Ola') }) */
 
-// var en = function () { console.log("Hello") }
-// greet(en);
-// greet(function () { console.log('Ola') })
 
 // e.g
-
-// var nums = [1, 3, 5, 7, 9, 2, 4, 6, 8, 10]
-// //nums.sort();
-// var asc = function (a, b) { return a - b }
-// nums.sort(asc);
+/* 
+var nums = [1, 3, 5, 7, 9, 2, 4, 6, 8, 10]
+// nums.sort();
+var asc = function (a, b) { return a - b }
+nums.sort(asc);
+var desc = function (a, b) { return b - a }
+nums.sort(desc); */
 
 //------------------------------------------------------
 // #3 - The return value of a function can be a function
 //------------------------------------------------------
+/* 
+function teach() {
+        console.log('teaching .js');
+        let learn = function () { console.log('learning .js'); }
+        //learn();
+        console.log('teaching ends..');
+        return learn;
+}
 
-// function teach() {
-//     console.log('teaching .js');
-//     let learn = function () { console.log('learning .js'); }
-//     //learn();
-//     console.log('teaching ends..');
-//     return learn;
-// }
-
-// let learnFunc=teach()
-// learnFunc()
-// learnFunc()
-
-
-//-----------------------------------------------------------
-// function + parameters
-//-----------------------------------------------------------
-
-// function func(a, b, c, d) {
-//     console.dir(arguments);
-// }
-// func()
-// func(10, 20, 30, 40);
-
-
-// e.g
-
-// function sum() {
-//     let result = 0,
-//         len = arguments.length,
-//         i = 0;
-//     while (i < len) {
-//         result += arguments[i]
-//         i++
-//     }
-//     return result
-// }
-
-
-
-// can we overload function .js-language ? No
-
-// function getFood() {
-//     return "No Food"
-// }
-// --------
-// function getFood(pay) {
-//     if (arguments.length === 0) return "No Food"
-//     return "Biryani"
-// }
-
-// console.log(getFood())
-// console.log(getFood(100))
-
-
-//-----------------------------------------------------------
-// function wuth default parameters  ( es6 )
-//-----------------------------------------------------------
-
-// function func(a = 1, b = 2) {
-//     console.log(a);
-//     console.log(b);
-// }
-// func(undefined, 20);
-
-
-
-//-----------------------------------------------------------
-// function wuth rest parameters  ( es6 )
-//-----------------------------------------------------------
-
-// function func(a, b, ...remaining) {
-//     console.log(a);
-//     console.log(b);
-//     console.log(remaining);
-// }
-// func(10, 20, 30, 40, 50);
+let learnFunc = teach()
+learnFunc()
+learnFunc() */
 
 
 //---------------------------------------------------------------
@@ -186,24 +210,22 @@ A closure is a function having access to the parent scope,
 even after the parent function has closed.
 
 */
+/* 
+function teach(sub) {
+        console.log(`teaching ${sub}`);
+        let notes = `${sub}-notes`
+        let fun = `bla bla`
+        function learn() {
+                console.log(`learning with ${notes}`);
+        }
+        //learn();  
+        console.log('teaching ends..');
+        return learn;
+}
+let learnFunc = teach('.js');
+learnFunc() */
 
-// function teach(sub) {
-//     console.log(`teaching ${sub}`);
-//     let notes = `${sub}-notes`
-//     let fun="bla bla";
-//     function learn() {
-//         console.log(`learning ${notes}`);
-//     }
-//     //learn();
-//     console.log('teaching ends..');
-//     return learn
-// }
-
-
-// let learnFunc=teach('.js');
-// learnFunc()
-
-
+//---------------------------------------------------------------
 
 /*
 
@@ -214,84 +236,80 @@ where/why we need closures ?
 
 
 */
+//---------------------------------------------------------------
 
 // use1: ==> to abstract public-behav of any module
 
 /*
-
-e.g counter-module
+e.g counter-module:
 
         count=0;
-        doCount()
-        getCount()
+        inc()
+        get()
 
 */
+/* 
+function init() {
+        let count = 0; // private
+        // public
+        function inc() {
+                count++;
+        }
+        function get() {
+                return count;
+        }
+        return {
+                inc: inc,
+                get: get
+        }
+}
 
+const counter1 = init();
+const counter2 = init();
+ */
 
-// function init() {
-//     let count = 0; // function scope  ==> private
-//     // public
-//     function doCount() {
-//         count++;
-//     }
-//     function getCount() {
-//         return count;
-//     }
-//     return {
-//         inc: doCount,
-//         get: getCount
-//     }
-// }
-// const counter1 = init();
-// const counter2 = init();
-// const counter3 = init();
+//---------------------------------------------------------------
+// self-executable / IIFE functions  ==> module patterns
+//---------------------------------------------------------------
 
-
-
-// // self executable / IIFE
-// const counter = (function () {
-//     let count = 0; // function scope  ==> private
-//     // public
-//     function doCount() {
-//         count++;
-//     }
-//     function getCount() {
-//         return count;
-//     }
-//     return {
-//         inc: doCount,
-//         get: getCount
-//     }
-// })()
-
-// counter.inc();
-// counter.inc();
+/* 
+const counter = (function () {
+        let count = 0; // private
+        // public
+        function inc() {
+                count++;
+        }
+        function get() {
+                return count;
+        }
+        return {
+                inc: inc,
+                get: get
+        }
+})();
+ */
 
 
 //---------------------------------------------------------
 
-// day-1 : Quiz
-// function getFood() {
-//     return{
-//         name: 'mini tiffin'
-//     }
-// }
-// let food = getFood();
-// console.log(food.name)
+// Quiz
+function getFood() {
+        return {
+                name: 'lunch'
+        }
+}
+let food = getFood();
+console.log(food.name)
 
 //---------------------------------------------------------
 
-// day-2 : Quiz
+//  Quiz
+/* 
+function func() {
+        j = 100;  //  implicit global scoped..
+}
+func();
 
-
-// "use strict"
-
-
-// function func(){
-//      i=100; //  implicit global scoped..
-// }
-// func();
-
-// console.log(i);
-
+console.log(j); */
+ 
 //---------------------------------------------------------

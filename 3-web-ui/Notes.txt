@@ -1,0 +1,220 @@
+
+----------------------------------------------------------
+
+ UI  ==> content + style + behavior
+
+
+ content  ==> HTML
+ style    ==> CSS
+ behavior ==> javascript
+
+
+ ----------------------------------------------------------
+
+what .js-lang can do on HTML-page in browser envi?
+
+
+using browser provided web-APIs,
+JavaScript-lang can bring any dynamic activity/data to web-page
+
+browser-APIs :  ==> are based on 'w3c' recommendations
+they are implemented nativly by browser & abstracted as JavaScript objects & functions
+
+
+browser-APIs  :
+    ==> DOM, XHR,Timer,....
+
+using DOM API
+----------------
+ -> can create,retreive,update,delete HTML elements
+ -> can change element's inner text/html content 
+ -> can change element's attributes/properties
+ -> can change element's styles ( css )
+ -> can validate form-fields before submit to server-program
+ -> can create rich UI-components like 
+ -> can listen any events on element
+ ...
+
+using XHR API
+---------------
+ -> can communicate with server-side programs async 
+
+using Timer API
+-----------------
+ -> can execute any action on timeout/time-interval
+
+HTML5 APIs
+-------------------
+https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5
+
+
+
+
+problems with plain-js with browser native APIs
+------------------------------------------------
+
+
+
+ ==> browser compatability issues
+     http://www.caniuse.com
+ ==> memory mamanagement is issues ( i.e clean un-used DOM elements)
+ ==> performance issues shud take care manually ( i.e DOM access should be minimal )
+ ==> data-binding is manual
+ ==> too much code for simple operation
+ ==> code oraganization is difficult
+
+-------------------------------------------------------------------------------------
+ soln: 
+    ==> using server-side page techonolgies
+
+            i.e JSP, ASP, PHP , freemarker, Rails,..
+
+        Problems:
+
+        => on every request, server-programs need to re-construct same UI layout with new content,
+           keeping client state
+        => on every request, server programs txring same resources, this will increase n/w bandwidth
+        => on every response, browser reloads current page with new-page 
+-------------------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------------------- 
+
+best-soln:
+
+
+    => use client-side(browser) page techonolgies
+
+         ==> using third-party's .js Lib & Frameworks
+
+
+    Utility lib
+    --------------------------------
+
+    1. jQuery
+
+            ==> DOM + AJAX utility lib 
+    
+
+    MVC/MVVM arch based lib & f.ws
+    ------------------------------
+
+    2. Knockout.js
+    3. Backbone.js
+    4. Ember.js
+    5. Angular.js from google-team
+    
+    6. DOJO 
+    7. Ext JS from sencha
+
+    ..........
+
+
+
+    W3c ==> web-component/custom-elements spec 
+
+
+    component based arch
+    ------------------------------------
+
+    1. React.js  from facebook  : v16
+    2. Angular                  : v6
+    3. Vue.js
+    4. Aurelia.js
+    5. Polymer.js
+    6. Ember.js
+    .....
+
+        
+//---------------------------------------------------------
+
+
+-------------------------------------------------------
+JS module standard
+-------------------------------------------------------
+
+
+.js developement , without module-standards & module loaders
+
+problems,
+
+        => global naming collisions
+        => loading dependency modules in order difficult
+
+
+
+soln:
+
+    => using third-party's module standards
+
+        a. AMD ( Async Module Definition ) spec
+                loader : Require.js  
+        b. UMD
+        c. commonJS    
+
+
+-------------------------------------------------------
+commonJS module standard
+-------------------------------------------------------
+
+
+    => every .js file is module
+    => all var & functions are private to module by default.
+    => to abstract/export any member(s), use 'module.exports' object
+    => to require/import any module, use 'require()' functions
+    => group related modules ito package with description file ( package.json )
+
+    imp-note: Node.js runtime already his standard as default-module standard
+
+-------------------------------------------------------
+
+
+NPM ( Node Package Manager ) 
+---------------------------------
+
+    - CLI TOOL
+    - part of Node.js runtime
+
+    why we need ?
+
+     -> to exchange( publish / install ) .js-packages with NPM-repository   
+
+-------------------------------------------------------
+
+build-tools 
+
+why we need ?
+
+        -->  transpile
+        -->  bundle
+        .....
+
+
+      Grunt,Gulp,Webpack
+
+---------------------------------------------------------
+
+
+-------------------------------------------------------
+ES module standard
+-------------------------------------------------------
+
+
+    => every .js file is module
+    => all var & functions are private to module by default.
+    => to abstract/export any member(s), use 'export' keyword
+    => to require/import any module, use 'import' keyword
+    => group related modules ito package with description file ( package.json )
+
+    imp-note: Node.js runtime already his standard as default-module standard
+
+-------------------------------------------------------
+
+
+
+        
+
+
+
+
+

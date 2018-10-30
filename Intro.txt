@@ -85,9 +85,8 @@ on project directory
 
 
 
-
+-------------------------------------------------
 JS-topics
-------------
 -------------------------------------------------
  level-1:
    1. data-types
@@ -109,17 +108,15 @@ level-4:
 -------------------------------------------------    
       
 
-
+------------------------------------------------- 
 
 References :
 
     https://developer.mozilla.org/en-US/docs/Web/JavaScript
     http://exploringjs.com/
     http://javascript.info/
-    http://reactivex.io/     |  https://rxjs-dev.firebaseapp.com/
-
-----------------------------------------------------    
-
+     
+------------------------------------------------- 
 
 
 

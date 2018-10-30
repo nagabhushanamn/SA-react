@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body class="container">
+    <hr />
+    <h1>ui component arch</h1>
+    <hr />
+
+    <div id="box1" class="alert alert-info">
+        <input id="inp1" type="number" onchange="handleChange()" />
+        <hr />
+        <span class="badge badge-danger">0</span>
+    </div>
+    <script>
+        let inp1 = document.getElementById('inp1');
+        let badgeEle = document.querySelector('.badge');
+        let i = 0;
+        setInterval(() => {
+            i++;
+            inp1.value = i;
+            inp1.dispatchEvent(new Event('change'))
+        }, 1000);
+        function handleChange() {
+            badgeEle.innerHTML = i;
+        }
+    </script>
+
+</body>
+
+</html>

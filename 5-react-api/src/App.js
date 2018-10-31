@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
-// import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import PropTypes from 'prop-types'
 import Greeting from './components/Greeting';
 import CounterApp from './components/CounterApp';
+import Box from './components/Box';
+import Product from './components/Product'
+import Employee from './components/Employee'
+import A from './components/A';
+import B from './components/B';
+
+
+const ValueContext = React.createContext('value');
 
 class App extends Component {
 
@@ -31,6 +39,18 @@ class App extends Component {
       <div className="container">
         <hr />
         <h1>{title} : by {author}</h1>
+        <hr />
+        <A value={1000} />
+        <A value={2000} />
+        <hr />
+        <Box>
+          <Product />
+          <Product />
+        </Box>
+        <Box>
+          <Employee />
+          <Employee />
+        </Box>
         <hr />
         <CounterApp />
         <hr />

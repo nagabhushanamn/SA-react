@@ -1,0 +1,34 @@
+
+
+shopping-ui
+-------------
+
+step-1: indentify UI state
+-----------------------------
+
+    -products
+    -reviews
+    -cart
+    ......
+
+
+step-2: indentify action which cause state 
+
+    - LOAD_PRODUCTS_SUCCESS
+    - LOAD_PRODUCTS_FAILED
+    - LOAD_REVIEWS
+    - SUBMIT_NEW_REVIEW
+    - BUY
+    ...
+
+step-3 : define 'action' creator function
+
+    loadProducts(cate){
+        return {type:LOAD_PRODUCTS_SUCCESS,products}
+    }
+     `
+step-4 : define reducer(s) who can process action with current state  
+
+step-5 : combile all reducers as rootReducer
+
+step-6 : create single store with rootReducer
